@@ -1,0 +1,5 @@
+<ul class="user-list">
+  @for(user of users(); track user.id) {
+  <li>{{ user.firstName + ' ' + user.lastName }}</li>
+  } @empty {Empty list of users}
+</ul>

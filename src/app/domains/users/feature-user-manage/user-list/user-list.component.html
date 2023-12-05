@@ -1,5 +1,30 @@
-<ul class="user-list">
-  @for(user of users(); track user.id) {
-  <li>{{ user.firstName + ' ' + user.lastName }}</li>
-  } @empty {Empty list of users}
-</ul>
+<mat-card class="user-list">
+  <mat-card-header>
+    <mat-card-title>Users list</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-user-search (changed)="onSearchChanged($event)"></app-user-search>
+    <ul>
+      @for(user of users(); track user.id) {
+
+      <li class="user">
+
+        @if (user.avatarUrl){
+        <img [ngSrc]="user.avatarUrl"
+             class="user__avatar"
+             width="50"
+             height="50"
+             alt="" />
+        } @else {
+        <div class="user__avatar-placeholder"></div>
+        }
+
+        <span class="user__name">{{ user.firstName + ' ' + user.lastName }}</span>
+      </li>
+
+      } @empty {
+      Empty list of users
+      }
+    </ul>
+  </mat-card-content>
+</mat-card>

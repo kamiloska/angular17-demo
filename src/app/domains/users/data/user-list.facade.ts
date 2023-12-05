@@ -16,8 +16,8 @@ export class UserListFacade {
     this.users = this._users.asReadonly();
   }
 
-  loadUsers(): void {
-    this._userService.getUsers()
+  loadUsers(search: string): void {
+    this._userService.getUsers(search)
       .subscribe(users => {
         this._users.set(users);
       })

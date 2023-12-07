@@ -1,0 +1,29 @@
+<div class="chat">
+  <div class="chat__content">
+    @for(message of messages(); track message.created) {
+    @if(message.type === messageType.Recipient){
+    Recipient: <br />
+    {{ message.text}}
+    } @else {
+    Sender: <br />
+    {{ message.text }}
+    }
+    <br />
+    }
+  </div>
+  <div class="chat__input">
+    <mat-form-field>
+      <mat-label>Type a message here...</mat-label>
+      <input type="text"
+             matInput
+             [ngModel]="message()"
+             (ngModelChange)="message.set($event)"
+             (keyup.enter)="onSendMessageClick()" />
+    </mat-form-field>
+    <button #send
+            mat-icon-button
+            (click)="onSendMessageClick()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

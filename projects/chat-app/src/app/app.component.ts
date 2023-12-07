@@ -8,14 +8,17 @@ import { AuthService } from 'auth';
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'angular-features';
-
+  title = 'chat-app';
   auth = inject(AuthService);
 
   constructor() {
-    this.auth.login('John Doe');
+    this.auth.userName.subscribe(user => {
+      console.log(user);
+    });
   }
 }
+
+export default AppComponent;
